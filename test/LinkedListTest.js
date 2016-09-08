@@ -18,6 +18,15 @@ describe('LinkedList', function () {
             expect(list.isEmpty()).to.equal(false);
         });
     });
+    describe('push()', function () {
+        it('has isEmpty to be false with one or more elements', function () {
+            var list = new LinkedList();
+            list.push(10)
+            expect(list.isEmpty()).to.equal(false);
+        });
+
+    });
+
     describe('get()', function () {
         it('has to throw an exeption', function () {
             var list = new LinkedList(1)
@@ -27,6 +36,21 @@ describe('LinkedList', function () {
         it('has an string argument', function () {
             var list = new LinkedList(10)
             expect(list.get("sdsada")).to.throw('must be an integer');
+        });
+
+        it('has an same number element in the imput', function () {
+            var list = new LinkedList(),
+                element = 3;
+
+            list.push(element);
+            expect(list.getValue(1)).to.equal(element);
+        });
+        it('has an same string element in the imput', function () {
+            var list = new LinkedList(),
+                element = "3";
+
+            list.push(element);
+            expect(list.getValue(1)).to.equal(element);
         });
     });
 });

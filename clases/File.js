@@ -4,8 +4,8 @@ var LinkedList = require('../clases/LinkedList');
 class File {
     constructor(path) {
         if (!path) {
-            throw 'No path'
-            return
+            throw 'No path';
+            //return
         }
         this.path = path;
     }
@@ -18,7 +18,7 @@ class File {
     //This method convert the readed file to a list
     toList() {
         if (!this.info) {
-            throw('error, must read a file');
+            throw 'error, must read a file';
         }
         if (typeof(this.info) !== 'object') {
             this.info = this.info.split(',');

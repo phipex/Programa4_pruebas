@@ -241,7 +241,8 @@ class UtilMath {
     
     static F(x,dof){
         var factorOne = (UtilMath.gamma((dof+1)/2))/((Math.pow(dof*Math.PI,1/2))*(UtilMath.gamma(dof/2)));
-        var factorTwo = Math.pow((1 + (Math.pow(x,2)/dof)),((-dof+1)/2));
+        var factorTwo = Math.pow((1 + (Math.pow(x,2)/dof)),-((dof+1)/2));
+        //console.log('---',x,factorOne, factorTwo);
         return factorOne * factorTwo;
     }
     
@@ -259,6 +260,11 @@ class UtilMath {
             if(i==0 || i==numseg){
                 multiplier=1
             }
+
+            //console.log('w*i',w,i,w*i);
+//console.log('f',UtilMath.F(w*i,dof));
+  //          console.log('multiplier',multiplier);
+            //console.log('terms',(w/3) * multiplier * UtilMath.F(w*i,dof));
             value= value + ((w/3) * multiplier * UtilMath.F(w*i,dof))
         }
         return value

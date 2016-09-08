@@ -25,7 +25,6 @@ class LinkedList {
         }
         this.length++;
     }
-
     get(index){ //obtiene el nodo en al posicion index
         if(typeof(index) != 'number' ){
             throw 'must be an integer';

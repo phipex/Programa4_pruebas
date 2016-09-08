@@ -184,15 +184,52 @@ describe('UtilMath', function () {
             expect(UtilMath.gamma(10)).to.equal(362880);
         });
         it('has an string argument', function () {
-            expect(UtilMath.gamma("sdsada")).to.throw('x must be a number');
+            expect((function(){UtilMath.gamma("sdsada");})).to.throw('x must be a number');
         });
         it('has value 0 in argument', function () {
-            expect(UtilMath.gamma(0)).to.throw('x must be a positive number major than cero');
+            expect((function(){UtilMath.gamma(0);})).to.throw('x must be a positive number major than cero');
         });
         it('has value negative in argument', function () {
-            expect(UtilMath.gamma(-1)).to.throw('x must be a positive number major than cero');
+            expect((function(){UtilMath.gamma(-1);})).to.throw('x must be a positive number major than cero');
         });
     });
-    
-
+    describe('numerically integrating the t distribution with Simpson’s rule',function(){
+        it('has dof be difetent than 0',function(){
+            expect((function(){UtilMath.F(0,0);})).to.throw('x must be a positive number major than cero');
+        });
+        it('has dof>0',function(){
+            expect((function(){UtilMath.F(0,-1);})).to.throw('x must be a positive number major than cero');
+        });
+        it('has to be 0.20652 with x=1.1 and dof=9',function(){
+           expect(UtilMath.F(0.11,9)).to.equal(0.38544); 
+        });
+        it('has to be 0.20652 with x=1.1 and dof=9',function(){
+           expect(UtilMath.F(0.55,9)).to.equal(0.32892); 
+        });
+        it('has to be 0.20652 with x=1.1 and dof=9',function(){
+           expect(UtilMath.F(1.1,9)).to.equal(0.20652); 
+        });
+        
+    });
+    describe('simpson()',function(){
+        it('has numseb is 0',function(){
+            expect((function(){UtilMath.simpson(0,0,0);})).to.throw('x must be a positive number major than cero');
+        });
+        
+        it('has dof is 0',function(){
+            expect((function(){UtilMath.simpson(1,1,0);})).to.throw('x must be a positive number major than cero');
+        });
+        it('has dof > 0',function(){
+            expect((function(){UtilMath.simpson(1,1,-1);})).to.throw('x must be a positive number major than cero');
+        });
+        it('has to be 0 with x=0',function(){
+            expect(UtilMath.simpson(0,1,1)).to.equal(0);
+        });
+        it('has to be 0 with x=0 and other arguments with any value',function(){
+            expect(UtilMath.simpson(0,100,100)).to.equal(0);
+        });
+        it('has to be 0.3500 with x=1,1,num_seg=10,dof=9',function(){
+            expect(UtilMath.simpson(1.1,10,9)).to.equal(0.3500589);
+        });
+    });
 });
